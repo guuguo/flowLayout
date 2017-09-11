@@ -1,7 +1,6 @@
 flowlayout
 =======
-[![](https://jitpack.io/v/guuguo/flowLayout.svg)](https://jitpack.io/#guuguo/flowLayout)
-
+[![](https://jitpack.io/v/guuguo/flowlayout.svg)](https://jitpack.io/#guuguo/flowlayout)
 
 Android 流式布局和网格布局共同体，支持单选、多选等，支持使用直接使用recycler的adapter避免重复写适配器
 # 使用
@@ -9,6 +8,7 @@ Android 流式布局和网格布局共同体，支持单选、多选等，支持
 compile 'com.github.guuguo:flowlayout:$version' // jitpack version 
 ```
 # 效果图
+
 ![image](recode.gif)
 ![image](pic1.png)
 
@@ -26,13 +26,13 @@ https://github.com/LRH1993/AutoFlowLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
-    app:checkType="none" //默认none 无法选择，single单选，multi多选(需要使用FlowAdapter适配数据才能选择)
+    app:checkType="none" 
     android:layout_marginRight="20dp"
     android:padding="15dp"
-    app:divideSpace="10dp" //子view间隔
-    app:dividerColor="#FFFFFF" //在子view间隔上绘制颜色
-    app:lineAlign="center" //流式布局每行的居左 居中 居右
-    app:columnNumbers="0" 如果是0 则为流式布局，>0 则为网格布局
+    app:divideSpace="10dp" 
+    app:dividerColor="#FFFFFF"
+    app:lineAlign="center" 
+    app:columnNumbers="0" 
     />
 ```
 > flowAdapter适配数据：
@@ -77,15 +77,20 @@ adapter.getCheckedMap() //返回 hashMap 键是position 值是传入的泛型ite
 ===
 
 ```xml 
+ <!--子view间隔-->
 <attr name="divideSpace" format="dimension" />
+<!--如果是0 则为流式布局，>0 则为网格布局-->
 <attr name="columnNumbers" format="integer" />
+<!--在子view间隔上绘制颜色-->
 <attr name="dividerColor" format="color" />
+<!--流式布局每行的对齐方式-->
 <attr name="lineAlign" format="enum">
     <enum name="left" value="0" />
     <enum name="center" value="1" />
     <enum name="right" value="2" />
 </attr>
-<attr name="checkType" format="enum">
+<!--默认none 无法选择，single单选，multi多选(需要使用FlowAdapter适配数据才能选择)-->
+<attr name="checkType" format="enum"> 
     <enum name="none" value="-1" />
     <enum name="multi" value="0" />
     <enum name="single" value="1" />
