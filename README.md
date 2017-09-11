@@ -2,7 +2,7 @@ DividerView
 =======
 [![](https://jitpack.io/v/guuguo/flowlayout.svg)](https://jitpack.io/#guuguo/flowlayout)
 
-Android 流式布局，支持单选、多选等，支持使用直接使用recycler的adapter避免重复写适配器，支持简单的网格布局
+Android 流式布局和网格布局共同体，支持单选、多选等，支持使用直接使用recycler的adapter避免重复写适配器
 # 使用
 ```groovy
 compile 'com.github.guuguo:flowlayout:$version' // jitpack version 
