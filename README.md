@@ -1,6 +1,7 @@
 flowlayout
 =======
-[![](https://jitpack.io/v/guuguo/flowlayout.svg)](https://jitpack.io/#guuguo/flowlayout)
+[![](https://jitpack.io/v/guuguo/flowLayout.svg)](https://jitpack.io/#guuguo/flowLayout)
+
 
 Android 流式布局和网格布局共同体，支持单选、多选等，支持使用直接使用recycler的adapter避免重复写适配器
 # 使用
@@ -8,11 +9,8 @@ Android 流式布局和网格布局共同体，支持单选、多选等，支持
 compile 'com.github.guuguo:flowlayout:$version' // jitpack version 
 ```
 # 效果图
-
-<img src="recode.gif" width="340px"/>
-
-<img src="pic1.png" width="340px"/>
-
+![image](recode.gif)
+![image](pic1.png)
 
 # 参考的库
 
