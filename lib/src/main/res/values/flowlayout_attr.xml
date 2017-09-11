@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowLayout">
+        <attr name="divideSpace" format="dimension" />
+        <attr name="columnNumbers" format="integer" />
+        <attr name="dividerColor" format="color" />
+        <attr name="lineAlign" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="checkType" format="enum">
+            <enum name="none" value="-1" />
+            <enum name="multi" value="0" />
+            <enum name="single" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
