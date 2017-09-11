@@ -4,6 +4,7 @@
         <attr name="divideSpace" format="dimension" />
         <attr name="columnNumbers" format="integer" />
         <attr name="dividerColor" format="color" />
+        <attr name="rowNumbers" format="integer" />
         <attr name="lineAlign" format="enum">
             <enum name="left" value="0" />
             <enum name="center" value="1" />

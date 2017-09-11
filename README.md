@@ -1,4 +1,4 @@
-DividerView
+flowlayout
 =======
 [![](https://jitpack.io/v/guuguo/flowlayout.svg)](https://jitpack.io/#guuguo/flowlayout)
 
