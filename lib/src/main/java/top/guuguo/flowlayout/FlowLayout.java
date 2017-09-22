@@ -173,46 +173,47 @@ public class FlowLayout extends ViewGroup {
             isHeightAvg = true;
         else isHeightAvg = false;
         //统计最大高度/最大宽度
-        for (int i = 0; i < mRowNumbers; i++) {
-            mAllViews.add(new ArrayList<View>());
-            for (int j = 0; j < mColumnNumbers; j++) {
-                final View child = getChildAt(i * mColumnNumbers + j);
-                if (child != null) {
-                    MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-
-                    mAllViews.get(i).add(child);
-                    if (child.getVisibility() != GONE) {
-                        int widthSpec;
-                        widthSpec = getChildMeasureSpec(widthMeasureSpec, sizeWidth - widthGridChildAv, lp.width);
-                        int heightSpec;
-                        if (modeHeight != MeasureSpec.EXACTLY) {
-//                            heightSpec = MeasureSpec.makeMeasureSpec(sizeHeight, MeasureSpec.UNSPECIFIED);
-                            heightSpec = getChildMeasureSpec(heightMeasureSpec, paddingTop + paddingBottom, lp.height);
-                            child.measure(widthSpec, heightSpec);
-                            heightGridChildAv = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
-                        } else {
-                            heightSpec = getChildMeasureSpec(heightMeasureSpec, sizeHeight - heightGridChildAv, lp.height);
-                            child.measure(widthSpec, heightSpec);
-                        }
-                        // 得到child的lp
-                        maxChildHeight = Math.max(maxChildHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-                    }
+        int line = 0;
+        mAllViews.add(new ArrayList<View>());
+        for (int i = 0; i < getChildCount(); i++) {
+            final View child = getChildAt(i);
+            if (child.getVisibility() != GONE) {
+                MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+                if (mAllViews.get(line).size() >= mColumnNumbers) {
+                    maxHeight += maxChildHeight;
+                    maxChildHeight = 0;
+                    mAllViews.add(new ArrayList<View>());
+                    line++;
                 }
+                mAllViews.get(line).add(child);
+
+                int widthSpec;
+                widthSpec = getChildMeasureSpec(widthMeasureSpec, sizeWidth - widthGridChildAv, lp.width);
+                int heightSpec;
+                if (modeHeight != MeasureSpec.EXACTLY) {
+                    heightSpec = getChildMeasureSpec(heightMeasureSpec, paddingTop + paddingBottom, lp.height);
+                    child.measure(widthSpec, heightSpec);
+                    heightGridChildAv = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
+                } else {
+                    heightSpec = getChildMeasureSpec(heightMeasureSpec, sizeHeight - heightGridChildAv, lp.height);
+                    child.measure(widthSpec, heightSpec);
+                }
+                // 得到child的lp
+                maxChildHeight = Math.max(maxChildHeight, child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
             }
-            maxHeight += maxChildHeight;
-            maxChildHeight = 0;
         }
-        int heightResult = maxHeight + mDividerSpace * (mRowNumbers - 1) + paddingBottom + paddingTop;
+        maxHeight += maxChildHeight;
+        int heightResult = maxHeight + mDividerSpace * (line) + paddingBottom + paddingTop;
         setMeasuredDimension(sizeWidth, (modeHeight == EXACTLY) ? sizeHeight : heightResult);
     }
 
     private void setGridLayout() {
         if (getChildCount() > 0) {
             int lastLineHeight = getPaddingTop();
-            for (int i = 0; i < mRowNumbers; i++) {
+            for (int i = 0; i < mAllViews.size(); i++) {
                 int maxChildLineHeight = 0;
-                for (int j = 0; j < mColumnNumbers; j++) {
-                    final View child = getChildAt(i * mColumnNumbers + j);
+                for (int j = 0; j < mAllViews.get(i).size(); j++) {
+                    final View child = mAllViews.get(i).get(j);
                     if (child != null) {
                         MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
                         int stayMaxWidth = widthGridChildAv - lp.leftMargin - lp.rightMargin;
@@ -278,39 +279,41 @@ public class FlowLayout extends ViewGroup {
         // 遍历所有的孩子
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
-            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-            int childWidth = child.getMeasuredWidth();
-            int childHeight = child.getMeasuredHeight();
-            int childPlaceHeight = childHeight + lp.topMargin + lp.bottomMargin;
-            int childPlaceWidth = childWidth + lp.leftMargin + lp.rightMargin;
-            // 如果已经需要换行
-            if (currentLineLayoutWidth + childPlaceWidth + getPaddingRight() + mDividerSpace > sizeWidth) {
-                offsetLineView(sizeWidth, currentLine, currentLineLayoutWidth);
-                //换行后当前行高
-                currentLineLayoutWidth = getPaddingLeft();
-                //已布局行高加上该行最大行高
-                lastLineHeight += (maxChildLineHeight + mDividerSpace);
-                //最大行高归零
-                maxChildLineHeight = 0;
+            if (child.getVisibility() != GONE) {
+                measureChild(child, widthMeasureSpec, heightMeasureSpec);
+                MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+                int childWidth = child.getMeasuredWidth();
+                int childHeight = child.getMeasuredHeight();
+                int childPlaceHeight = childHeight + lp.topMargin + lp.bottomMargin;
+                int childPlaceWidth = childWidth + lp.leftMargin + lp.rightMargin;
+                // 如果已经需要换行
+                if (currentLineLayoutWidth + childPlaceWidth + getPaddingRight() + mDividerSpace > sizeWidth) {
+                    offsetLineView(sizeWidth, currentLine, currentLineLayoutWidth);
+                    //换行后当前行高
+                    currentLineLayoutWidth = getPaddingLeft();
+                    //已布局行高加上该行最大行高
+                    lastLineHeight += (maxChildLineHeight + mDividerSpace);
+                    //最大行高归零
+                    maxChildLineHeight = 0;
 
-                currentLine++;
-                mAllViews.add(new ArrayList<View>());
+                    currentLine++;
+                    mAllViews.add(new ArrayList<View>());
 
+                }
+                /**
+                 * 布局该child
+                 */
+                if (currentLineLayoutWidth != getPaddingLeft()) {
+                    currentLineLayoutWidth += mDividerSpace;
+                }
+                int childLeft = currentLineLayoutWidth + lp.leftMargin;
+                int childTop = lastLineHeight + lp.topMargin;
+                currentLineLayoutWidth += childPlaceWidth;
+                maxChildLineHeight = Math.max(maxChildLineHeight, childPlaceHeight);
+
+                viewLayoutRectMap.put(child, new Rect(childLeft, childTop, childLeft + child.getMeasuredWidth(), child.getMeasuredHeight() + childTop));
+                mAllViews.get(currentLine).add(child);
             }
-            /**
-             * 布局该child
-             */
-            if (currentLineLayoutWidth != getPaddingLeft()) {
-                currentLineLayoutWidth += mDividerSpace;
-            }
-            int childLeft = currentLineLayoutWidth + lp.leftMargin;
-            int childTop = lastLineHeight + lp.topMargin;
-            currentLineLayoutWidth += childPlaceWidth;
-            maxChildLineHeight = Math.max(maxChildLineHeight, childPlaceHeight);
-
-            viewLayoutRectMap.put(child, new Rect(childLeft, childTop, childLeft + child.getMeasuredWidth(), child.getMeasuredHeight() + childTop));
-            mAllViews.get(currentLine).add(child);
             if (i == getChildCount() - 1) {
                 offsetLineView(sizeWidth, currentLine, currentLineLayoutWidth);
             }
@@ -348,8 +351,10 @@ public class FlowLayout extends ViewGroup {
         // 遍历所有的孩子
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
-            Rect rect = viewLayoutRectMap.get(child);
-            child.layout(rect.left, rect.top, rect.right, rect.bottom);
+            if (child.getVisibility() != GONE) {
+                Rect rect = viewLayoutRectMap.get(child);
+                child.layout(rect.left, rect.top, rect.right, rect.bottom);
+            }
         }
     }
 
