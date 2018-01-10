@@ -442,13 +442,19 @@ public class FlowLayout extends ViewGroup {
     }
 
     private void notifyChange() {
-        this.clearViews();
-        viewHolders.clear();
+        for (int i = mAdapter.getItemCount(); i < viewHolders.size(); i++) {
+            viewHolders.remove(i);
+        }
         for (int i = 0; i < mAdapter.getItemCount(); i++) {
-            RecyclerView.ViewHolder holder = mAdapter.createViewHolder(this, mAdapter.getItemViewType(i));
-            viewHolders.add(holder);
+            RecyclerView.ViewHolder holder;
+            if (i < viewHolders.size()) {
+                holder = viewHolders.get(i);
+            } else {
+                holder = mAdapter.createViewHolder(this, mAdapter.getItemViewType(i));
+                viewHolders.add(holder);
+                this.addView(holder.itemView);
+            }
             mAdapter.bindViewHolder(holder, i);
-            this.addView(holder.itemView);
         }
     }
 
