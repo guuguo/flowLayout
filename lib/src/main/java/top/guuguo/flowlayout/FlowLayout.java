@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -149,7 +148,6 @@ public class FlowLayout extends ViewGroup {
     private void setGridMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // 获得它的父容器为它设置的测量模式和大小
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
-        Log.i("FlowLayout", "sizeWidth:" + sizeWidth);
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
@@ -515,6 +513,7 @@ public class FlowLayout extends ViewGroup {
             super.onItemRangeChanged(positionStart, itemCount);
             for (int i = positionStart; i < positionStart + itemCount; i++) {
                 mAdapter.bindViewHolder(viewHolders.get(i), i);
+                mAdapter.getItemViewType(i);
             }
         }
     };

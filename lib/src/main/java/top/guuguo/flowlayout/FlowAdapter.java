@@ -45,7 +45,6 @@ public abstract class FlowAdapter<T> extends RecyclerView.Adapter<FlowAdapter.Vi
         checkedMap.clear();
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(onCreateView());
