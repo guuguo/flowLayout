@@ -524,4 +524,11 @@ public class FlowLayout extends ViewGroup {
         if (mAdapter != null && mAdapter.hasObservers())
             mAdapter.unregisterAdapterDataObserver(observer);
     }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (mAdapter != null && !mAdapter.hasObservers())
+            mAdapter.registerAdapterDataObserver(observer);
+    }
 }

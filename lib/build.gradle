@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.01"
+        versionCode 3
+        versionName "1.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -22,7 +22,7 @@ android {
 }
 
 dependencies {
-    ext.support_vesion = "27.0.2"
+    ext.support_vesion = "27.1.0"
     compile "com.android.support:design:$support_vesion"
     testCompile 'junit:junit:4.12'
 }
