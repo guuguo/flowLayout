@@ -440,7 +440,9 @@ public class FlowLayout extends ViewGroup {
     }
 
     private void notifyChange() {
-        for (int i = mAdapter.getItemCount(); i < viewHolders.size(); i++) {
+        int lastViewSize = viewHolders.size();
+        for (int i = lastViewSize - 1; i >= mAdapter.getItemCount(); i--) {
+            this.removeViewAt(i);
             viewHolders.remove(i);
         }
         for (int i = 0; i < mAdapter.getItemCount(); i++) {
