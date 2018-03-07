@@ -475,6 +475,9 @@ public class FlowLayout extends ViewGroup {
      */
     public void setColumnNumbers(int columnNumbers) {
         mColumnNumbers = columnNumbers;
+        if (mColumnNumbers != 0) {
+            mIsGridMode = true;
+        }
         requestLayout();
     }
 
