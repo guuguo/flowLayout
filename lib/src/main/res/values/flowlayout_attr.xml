@@ -10,6 +10,11 @@
             <enum name="center" value="1" />
             <enum name="right" value="2" />
         </attr>
+        <attr name="chainStyle" format="enum">
+            <enum name="spread" value="0" />
+            <enum name="packed" value="1" />
+            <enum name="spreadInside" value="2" />
+        </attr>
         <attr name="checkType" format="enum">
             <enum name="none" value="-1" />
             <enum name="multi" value="0" />

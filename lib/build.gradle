@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 16
@@ -22,7 +21,6 @@ android {
 }
 
 dependencies {
-    ext.support_vesion = "27.1.0"
-    compile "com.android.support:design:$support_vesion"
-    testCompile 'junit:junit:4.12'
+    ext.support_vesion = "27.1.1"
+    api "com.android.support:design:$support_vesion"
 }

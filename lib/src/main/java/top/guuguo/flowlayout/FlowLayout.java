@@ -52,18 +52,6 @@ public class FlowLayout extends ViewGroup {
      */
     private boolean mIsGridMode;
     /**
-     * 是否设置了分割线
-     */
-    private boolean mIsCutLine;
-    /**
-     * 记录分割线的宽度
-     */
-    private float mCutLineWidth;
-    /**
-     * 记录分割线的颜色
-     */
-    private int mCutLineColor;
-    /**
      * 是否每行居中处理
      */
     private int mLineAlign = LineAlignLeft;
@@ -72,6 +60,14 @@ public class FlowLayout extends ViewGroup {
      * 行数
      */
     private int mRowNumbers;
+    /**
+     * Grid 模式，chain Style
+     */
+    private int mChainStyle = ChainStyleSpreadInside;
+
+    public static final int ChainStyleSpread = 0;
+    public static final int ChainStylePacked = 1;
+    public static final int ChainStyleSpreadInside = 2;
 
     public static final int LineAlignLeft = 0;
     public static final int LineAlignCenter = 1;
@@ -121,10 +117,10 @@ public class FlowLayout extends ViewGroup {
         setDividerColor(ta.getColor(R.styleable.FlowLayout_dividerColor, Integer.MAX_VALUE));
         setDividerSpace((int) ta.getDimension(R.styleable.FlowLayout_divideSpace, 0));
         mColumnNumbers = ta.getInteger(R.styleable.FlowLayout_columnNumbers, 0);
-        mRowNumbers = ta.getInteger(R.styleable.FlowLayout_rowNumbers, 0);
+        mRowNumbers = ta.getInteger(R.styleable.FlowLayout_rowNumbers, mLineAlign);
         mLineAlign = ta.getInteger(R.styleable.FlowLayout_lineAlign, 0);
         mCheckType = ta.getInteger(R.styleable.FlowLayout_checkType, FlowAdapter.CHECK_TYPE_NONE);
-
+        mChainStyle = ta.getInteger(R.styleable.FlowLayout_chainStyle, mChainStyle);
         if (mColumnNumbers != 0) {
             mIsGridMode = true;
         }
@@ -177,7 +173,7 @@ public class FlowLayout extends ViewGroup {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
                 MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-                if (mAllViews.get(line).size() >= mColumnNumbers) {
+                if (mAllViews.get(line).size() >= mColumnNumbers) { //如果上一行已满  开始下一行
                     maxHeight += maxChildHeight;
                     maxChildHeight = 0;
                     mAllViews.add(new ArrayList<View>());
@@ -214,12 +210,24 @@ public class FlowLayout extends ViewGroup {
                     final View child = mAllViews.get(i).get(j);
                     if (child != null) {
                         MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+                        //子元素最大可能占位宽度
                         int stayMaxWidth = widthGridChildAv - lp.leftMargin - lp.rightMargin;
-                        int centerHorizonSpace = 0;
-                        if (stayMaxWidth > child.getMeasuredWidth())
-                            centerHorizonSpace = (stayMaxWidth - child.getWidth()) / 2;
-                        int childLeft = getPaddingLeft() + j * (widthGridChildAv + mDividerSpace) + lp.leftMargin + centerHorizonSpace;
+                        int childLeft = 0;
 
+                        if (stayMaxWidth > child.getMeasuredWidth()) {
+                            if (mChainStyle == ChainStyleSpread) {
+                                int extent = (stayMaxWidth - child.getMeasuredWidth()) * mColumnNumbers / (mColumnNumbers + 1);
+                                childLeft = getPaddingLeft() + j * (extent + child.getMeasuredWidth() + mDividerSpace) + lp.leftMargin + extent;
+                            } else if (mChainStyle == ChainStylePacked) {
+                                int extent = (stayMaxWidth - child.getMeasuredWidth()) * mColumnNumbers / 2;
+                                childLeft = getPaddingLeft() + j * (child.getMeasuredWidth() + mDividerSpace) + lp.leftMargin + extent;
+                            } else if (mChainStyle == ChainStyleSpreadInside) {
+                                int extent = (stayMaxWidth - child.getMeasuredWidth()) * mColumnNumbers / (mColumnNumbers - 1);
+                                childLeft = getPaddingLeft() + j * (extent + child.getMeasuredWidth() + mDividerSpace) + lp.leftMargin ;
+                            }
+                        } else {
+                            childLeft = getPaddingLeft() + j * (widthGridChildAv + mDividerSpace) + lp.leftMargin;
+                        }
                         if (isHeightAvg) {
                             int stayMaxHeight = heightGridChildAv - lp.topMargin - lp.bottomMargin;
                             int centerVerticalSpace = 0;

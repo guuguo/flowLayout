@@ -47,24 +47,6 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_round_item" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可爱"
-                    android:textColor="@color/black80"
-                    android:textSize="16sp" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,7 +89,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="40dp"
@@ -122,26 +105,105 @@
                     android:textColor="@color/black80"
                     android:textSize="16sp" />
             </LinearLayout>
+        </top.guuguo.flowlayout.FlowLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="1.1 chainStyle示范" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:visibility="gone"
-                android:gravity="center">
+        <top.guuguo.flowlayout.FlowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:chainStyle="spread"
+            app:columnNumbers="3"
+            app:divideSpace="1dp">
 
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_round_item" />
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可爱"
-                    android:textColor="@color/black80"
-                    android:textSize="16sp" />
-            </LinearLayout>
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+        </top.guuguo.flowlayout.FlowLayout>
+
+        <top.guuguo.flowlayout.FlowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:chainStyle="packed"
+            app:columnNumbers="3"
+            app:divideSpace="1dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+        </top.guuguo.flowlayout.FlowLayout>
+
+        <top.guuguo.flowlayout.FlowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:chainStyle="spreadInside"
+            app:columnNumbers="3"
+            app:divideSpace="1dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black20" />
         </top.guuguo.flowlayout.FlowLayout>
 
         <TextView
@@ -168,9 +230,9 @@
             <top.guuguo.flowlayout.FlowLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/white"
                 app:divideSpace="16dp"
                 app:dividerColor="#ededed">
@@ -179,8 +241,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:visibility="gone"
                     android:text="银色黑面（送皮带）"
+                    android:visibility="gone"
                     app:rv_backgroundColor="#f5f5f5"
                     app:rv_cornerRadius="10dp" />
 

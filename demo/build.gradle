@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "top.guuguo.flowlayout.demo"
         minSdkVersion 16
@@ -20,13 +19,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    compile project(":lib")
-    compile 'com.github.guuguo:dividerView:1.0.2'
-    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation project(":lib")
+    implementation 'com.github.guuguo:dividerView:1.0.2'
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
 }
