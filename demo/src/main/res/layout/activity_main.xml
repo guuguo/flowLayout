@@ -1,419 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="#ededed"
+    android:orientation="vertical"
+    tools:context="top.guuguo.myapplication.MainActivity">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"
+      android:text="1.网格布局"/>
+
+    <top.guuguo.flowlayout.FlowLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:background="@color/white"
+      app:columnNumbers="2"
+      app:divideSpace="3dp"
+      app:dividerColor="#ededed">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center">
+
+        <TextView
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/bg_round_item"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="可爱"
+          android:textColor="@color/black80"
+          android:textSize="16sp"/>
+      </LinearLayout>
+
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <TextView
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/bg_round_item"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="可爱"
+          android:textColor="@color/black80"
+          android:textSize="16sp"/>
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <TextView
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/bg_round_item"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="可爱"
+          android:textColor="@color/black80"
+          android:textSize="16sp"/>
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:background="@drawable/bg_round_item"/>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="可爱"
+          android:textColor="@color/black80"
+          android:textSize="16sp"/>
+      </LinearLayout>
+    </top.guuguo.flowlayout.FlowLayout>
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"
+      android:text="1.1 chainStyle示范"/>
+
+    <top.guuguo.flowlayout.FlowLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:padding="10dp"
+      android:background="@color/white"
+      app:chainStyle="spread"
+      app:columnNumbers="3"
+      app:divideSpace="1dp">
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+    </top.guuguo.flowlayout.FlowLayout>
+
+    <top.guuguo.flowlayout.FlowLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:padding="10dp"
+      android:background="@color/white"
+      app:chainStyle="packed"
+      app:columnNumbers="3"
+      app:divideSpace="1dp">
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+    </top.guuguo.flowlayout.FlowLayout>
+
+    <top.guuguo.flowlayout.FlowLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:padding="10dp"
+      android:background="@color/white"
+      app:chainStyle="spreadInside"
+      app:columnNumbers="3"
+      app:divideSpace="1dp">
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+
+      <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/black20"/>
+    </top.guuguo.flowlayout.FlowLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"
+      android:text="2.淘宝标签"/>
 
     <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:background="@color/white"
+      android:orientation="vertical">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="颜色分类"
+        android:textSize="20sp"/>
+
+      <top.guuguo.flowlayout.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ededed"
-        android:orientation="vertical"
-        tools:context="top.guuguo.myapplication.MainActivity">
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white"
+        app:divideSpace="16dp"
+        app:dividerColor="#ededed">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="1.网格布局" />
+        <com.flyco.roundview.RoundTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="8dp"
+          android:text="银色黑面（送皮带）"
+          android:visibility="gone"
+          app:rv_backgroundColor="#f5f5f5"
+          app:rv_cornerRadius="10dp"/>
 
-        <top.guuguo.flowlayout.FlowLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/white"
-            app:columnNumbers="2"
-            app:divideSpace="3dp"
-            app:dividerColor="#ededed">
+        <com.flyco.roundview.RoundTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="8dp"
+          android:text="黑色黑面（送皮带）"
+          app:rv_backgroundColor="#f5f5f5"
+          app:rv_cornerRadius="10dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_round_item" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可爱"
-                    android:textColor="@color/black80"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_round_item" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可爱"
-                    android:textColor="@color/black80"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_round_item" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可爱"
-                    android:textColor="@color/black80"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_round_item" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可爱"
-                    android:textColor="@color/black80"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </top.guuguo.flowlayout.FlowLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="1.1 chainStyle示范" />
-
-        <top.guuguo.flowlayout.FlowLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:padding="10dp"
-            app:chainStyle="spread"
-            app:columnNumbers="3"
-            app:divideSpace="1dp">
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-        </top.guuguo.flowlayout.FlowLayout>
-
-        <top.guuguo.flowlayout.FlowLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:padding="10dp"
-            app:chainStyle="packed"
-            app:columnNumbers="3"
-            app:divideSpace="1dp">
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-        </top.guuguo.flowlayout.FlowLayout>
-
-        <top.guuguo.flowlayout.FlowLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:padding="10dp"
-            app:chainStyle="spreadInside"
-            app:columnNumbers="3"
-            app:divideSpace="1dp">
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/black20" />
-        </top.guuguo.flowlayout.FlowLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="2.淘宝标签" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="颜色分类"
-                android:textSize="20sp" />
-
-            <top.guuguo.flowlayout.FlowLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                app:divideSpace="16dp"
-                app:dividerColor="#ededed">
-
-                <com.flyco.roundview.RoundTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="银色黑面（送皮带）"
-                    android:visibility="gone"
-                    app:rv_backgroundColor="#f5f5f5"
-                    app:rv_cornerRadius="10dp" />
-
-                <com.flyco.roundview.RoundTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="黑色黑面（送皮带）"
-                    app:rv_backgroundColor="#f5f5f5"
-                    app:rv_cornerRadius="10dp" />
-
-                <com.flyco.roundview.RoundTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="银色白面（送皮带）"
-                    app:rv_backgroundColor="#f5f5f5"
-                    app:rv_cornerRadius="10dp" />
-            </top.guuguo.flowlayout.FlowLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="3.兴趣标签" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <top.guuguo.dividerview.DividerLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                app:dv_align="dv_BC"
-                app:dv_dividerColor="@color/black20"
-                app:dv_dividerWidth="1px"
-                app:dv_margin="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="不可选"
-                    android:textColor="@color/color_green" />
-
-                <top.guuguo.flowlayout.FlowLayout
-                    android:id="@+id/fl_no_check"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:padding="15dp"
-                    app:checkType="none"
-                    app:divideSpace="10dp"
-                    app:lineAlign="center" />
-
-            </top.guuguo.dividerview.DividerLinearLayout>
-
-            <top.guuguo.dividerview.DividerLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                app:dv_align="dv_BC"
-                app:dv_dividerColor="@color/black20"
-                app:dv_dividerWidth="1px"
-                app:dv_margin="20dp">
-                <!--如果需要能选择要使用FlowAdapter添加数据-->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可单选"
-                    android:textColor="@color/color_yellow_dark" />
-
-                <top.guuguo.flowlayout.FlowLayout
-                    android:id="@+id/fl_single_check"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:padding="15dp"
-                    app:checkType="single"
-                    app:divideSpace="10dp"
-                    app:lineAlign="center" />
-            </top.guuguo.dividerview.DividerLinearLayout>
-
-            <top.guuguo.dividerview.DividerLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                app:dv_align="dv_BC"
-                app:dv_dividerColor="@color/black20"
-                app:dv_dividerWidth="1px"
-                app:dv_margin="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="可多选"
-                    android:textColor="@color/color_green_dark" />
-
-                <top.guuguo.flowlayout.FlowLayout
-                    android:id="@+id/fl_multi_check"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:padding="15dp"
-                    app:checkType="multi"
-                    app:divideSpace="10dp"
-                    app:lineAlign="center" />
-            </top.guuguo.dividerview.DividerLinearLayout>
-
-            <top.guuguo.dividerview.DividerLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                app:dv_align="dv_BC"
-                app:dv_dividerColor="@color/black20"
-                app:dv_dividerWidth="1px"
-                app:dv_margin="20dp">
-                <!--如果需要能限制多选，需要代码设置 flowAdapter.set-->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="限3个"
-                    android:textColor="@color/color_blue_0888ff" />
-
-                <top.guuguo.flowlayout.FlowLayout
-                    android:id="@+id/fl_multi_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:padding="15dp"
-                    app:divideSpace="10dp"
-                    app:lineAlign="center" />
-            </top.guuguo.dividerview.DividerLinearLayout>
-
-            <top.guuguo.dividerview.DividerLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="限5个"
-                    android:textColor="@color/color_purple" />
-
-                <top.guuguo.flowlayout.FlowLayout
-                    android:id="@+id/fl_multi_5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:padding="15dp"
-                    app:divideSpace="10dp"
-                    app:lineAlign="center" />
-            </top.guuguo.dividerview.DividerLinearLayout>
-        </LinearLayout>
+        <com.flyco.roundview.RoundTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="8dp"
+          android:text="银色白面（送皮带）"
+          app:rv_backgroundColor="#f5f5f5"
+          app:rv_cornerRadius="10dp"/>
+      </top.guuguo.flowlayout.FlowLayout>
     </LinearLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"
+      android:text="3.兴趣标签"/>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="500dp"
+      android:layout_marginTop="20dp"
+      android:background="@color/white"
+      android:orientation="vertical">
+
+      <top.guuguo.dividerview.DividerLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:dv_align="dv_BC"
+        app:dv_dividerColor="@color/black20"
+        app:dv_dividerWidth="1px"
+        app:dv_margin="20dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="不可选"
+          android:textColor="@color/color_green"/>
+
+        <top.guuguo.flowlayout.FlowLayout
+          android:id="@+id/fl_no_check"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="20dp"
+          android:padding="15dp"
+          app:checkType="none"
+          app:divideSpace="10dp"
+          app:lineAlign="center"/>
+
+      </top.guuguo.dividerview.DividerLinearLayout>
+
+      <top.guuguo.dividerview.DividerLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:dv_align="dv_BC"
+        app:dv_dividerColor="@color/black20"
+        app:dv_dividerWidth="1px"
+        app:dv_margin="20dp">
+        <!--如果需要能选择要使用FlowAdapter添加数据-->
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="可单选"
+          android:textColor="@color/color_yellow_dark"/>
+
+        <top.guuguo.flowlayout.FlowLayout
+          android:id="@+id/fl_single_check"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="20dp"
+          android:padding="15dp"
+          app:checkType="single"
+          app:divideSpace="10dp"
+          app:lineAlign="center"/>
+      </top.guuguo.dividerview.DividerLinearLayout>
+
+      <top.guuguo.dividerview.DividerLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:dv_align="dv_BC"
+        app:dv_dividerColor="@color/black20"
+        app:dv_dividerWidth="1px"
+        app:dv_margin="20dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="可多选"
+          android:textColor="@color/color_green_dark"/>
+
+        <top.guuguo.flowlayout.FlowLayout
+          android:id="@+id/fl_multi_check"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="20dp"
+          android:padding="15dp"
+          app:checkType="multi"
+          app:divideSpace="10dp"
+          app:lineAlign="center"/>
+      </top.guuguo.dividerview.DividerLinearLayout>
+
+      <top.guuguo.dividerview.DividerLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:dv_align="dv_BC"
+        app:dv_dividerColor="@color/black20"
+        app:dv_dividerWidth="1px"
+        app:dv_margin="20dp">
+        <!--如果需要能限制多选，需要代码设置 flowAdapter.set-->
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="限3个"
+          android:textColor="@color/color_blue_0888ff"/>
+
+        <top.guuguo.flowlayout.FlowLayout
+          android:id="@+id/fl_multi_3"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="20dp"
+          android:padding="15dp"
+          app:divideSpace="10dp"
+          app:lineAlign="center"/>
+      </top.guuguo.dividerview.DividerLinearLayout>
+
+      <top.guuguo.dividerview.DividerLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="20dp"
+          android:text="限5个"
+          android:textColor="@color/color_purple"/>
+
+        <top.guuguo.flowlayout.FlowLayout
+          android:id="@+id/fl_multi_5"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="20dp"
+          android:padding="15dp"
+          app:divideSpace="10dp"
+          app:lineAlign="center"/>
+      </top.guuguo.dividerview.DividerLinearLayout>
+    </LinearLayout>
+  </LinearLayout>
 </ScrollView>

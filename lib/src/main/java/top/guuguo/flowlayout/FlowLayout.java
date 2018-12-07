@@ -190,7 +190,7 @@ public class FlowLayout extends ViewGroup {
         mAllViews.get(line).add(child);
 
         int widthSpec;
-        widthSpec = getChildMeasureSpec(widthMeasureSpec, sizeWidth - widthGridChildAv, lp.width);
+        widthSpec = getChildMeasureSpec(widthMeasureSpec, sizeWidth - widthGridChildAv+lp.leftMargin+lp.rightMargin, lp.width);
         int heightSpec;
         if (modeHeight != MeasureSpec.EXACTLY) {
           heightSpec = getChildMeasureSpec(heightMeasureSpec, paddingTop + paddingBottom,
