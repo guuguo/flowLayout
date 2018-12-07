@@ -8,14 +8,15 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.AttributeSet;
+import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import top.guuguo.flowlayout.FlowAdapter.ViewHolder;
 
 import static android.view.View.MeasureSpec.EXACTLY;
 
@@ -86,7 +87,10 @@ public class FlowLayout extends ViewGroup {
   private int widthGridChildAv = 0;
   private int heightGridChildAv = 0;
 
-  private ArrayList<RecyclerView.ViewHolder> viewHolders = new ArrayList();
+  /**
+   * viewHolders 数组 second是 viewType
+   */
+  private ArrayList<Pair<RecyclerView.ViewHolder, Integer>> viewHolders = new ArrayList();
 
   public FlowLayout(Context context) {
     this(context, null);
@@ -190,7 +194,8 @@ public class FlowLayout extends ViewGroup {
         mAllViews.get(line).add(child);
 
         int widthSpec;
-        widthSpec = getChildMeasureSpec(widthMeasureSpec, sizeWidth - widthGridChildAv+lp.leftMargin+lp.rightMargin, lp.width);
+        widthSpec = getChildMeasureSpec(widthMeasureSpec,
+            sizeWidth - widthGridChildAv + lp.leftMargin + lp.rightMargin, lp.width);
         int heightSpec;
         if (modeHeight != MeasureSpec.EXACTLY) {
           heightSpec = getChildMeasureSpec(heightMeasureSpec, paddingTop + paddingBottom,
@@ -474,17 +479,37 @@ public class FlowLayout extends ViewGroup {
   }
 
   private void notifyChange() {
-    viewHolders.clear();
+    int lastViewSize = viewHolders.size();
+    for (int i = lastViewSize - 1; i >= mAdapter.getItemCount(); i--) {
+      this.removeViewAt(i);
+      viewHolders.remove(i);
+    }
     this.removeAllViews();
+    viewHolders.clear();
 
     for (int i = 0; i < mAdapter.getItemCount(); i++) {
       RecyclerView.ViewHolder holder;
-
-      holder = mAdapter.createViewHolder(this, mAdapter.getItemViewType(i));
-      viewHolders.add(holder);
-      this.addView(holder.itemView);
+      if (i < viewHolders.size()) { //原有大小内判断view 的类型是否有发生变化，没变化就复用之前的view
+        Pair<RecyclerView.ViewHolder, Integer> lHolderPair = viewHolders.get(i);
+        if (lHolderPair.second == mAdapter.getItemViewType(i)) {
+          holder = viewHolders.get(i).first;
+        } else {
+          holder = createViewHolder(i);
+        }
+      } else {
+        holder = createViewHolder(i);
+      }
       mAdapter.bindViewHolder(holder, i);
     }
+  }
+
+  @NonNull
+  private RecyclerView.ViewHolder createViewHolder(int i) {
+    ViewHolder holder;
+    holder = mAdapter.createViewHolder(this, mAdapter.getItemViewType(i));
+    viewHolders.add(Pair.create(holder, mAdapter.getItemViewType(i)));
+    this.addView(holder.itemView);
+    return holder;
   }
 
   /**
@@ -540,7 +565,7 @@ public class FlowLayout extends ViewGroup {
     public void onItemRangeChanged(int positionStart, int itemCount) {
       super.onItemRangeChanged(positionStart, itemCount);
       for (int i = positionStart; i < positionStart + itemCount; i++) {
-        mAdapter.bindViewHolder(viewHolders.get(i), i);
+        mAdapter.bindViewHolder(viewHolders.get(i).first, i);
         mAdapter.getItemViewType(i);
       }
     }
@@ -565,10 +590,7 @@ public class FlowLayout extends ViewGroup {
     public void onItemRangeInserted(int positionStart, int itemCount) {
       super.onItemRangeInserted(positionStart, itemCount);
       for (int i = positionStart; i < positionStart + itemCount; i++) {
-        RecyclerView.ViewHolder viewHolder = mAdapter
-            .createViewHolder(FlowLayout.this, mAdapter.getItemViewType(i));
-        viewHolders.add(viewHolder);
-        FlowLayout.this.addView(viewHolder.itemView, i);
+        mAdapter.bindViewHolder(createViewHolder(i), i);
       }
       requestLayout();
 //      for (int i = positionStart; i < positionStart + itemCount; i++) {
