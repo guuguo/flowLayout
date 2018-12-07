@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import top.guuguo.flowlayout.FlowAdapter.ViewHolder;
 
 import static android.view.View.MeasureSpec.EXACTLY;
 
@@ -474,6 +475,8 @@ public class FlowLayout extends ViewGroup {
 
   private void notifyChange() {
     viewHolders.clear();
+    this.removeAllViews();
+
     for (int i = 0; i < mAdapter.getItemCount(); i++) {
       RecyclerView.ViewHolder holder;
 
@@ -541,6 +544,37 @@ public class FlowLayout extends ViewGroup {
         mAdapter.getItemViewType(i);
       }
     }
+
+    @Override
+    public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+//      super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+      notifyChange();
+    }
+
+    @Override
+    public void onItemRangeRemoved(int positionStart, int itemCount) {
+      super.onItemRangeRemoved(positionStart, itemCount);
+      for (int i = positionStart; i < positionStart + itemCount; i++) {
+        viewHolders.remove(i);
+        FlowLayout.this.removeViewAt(i);
+      }
+      requestLayout();
+    }
+
+    @Override
+    public void onItemRangeInserted(int positionStart, int itemCount) {
+      super.onItemRangeInserted(positionStart, itemCount);
+      for (int i = positionStart; i < positionStart + itemCount; i++) {
+        RecyclerView.ViewHolder viewHolder = mAdapter
+            .createViewHolder(FlowLayout.this, mAdapter.getItemViewType(i));
+        viewHolders.add(viewHolder);
+        FlowLayout.this.addView(viewHolder.itemView, i);
+      }
+      requestLayout();
+//      for (int i = positionStart; i < positionStart + itemCount; i++) {
+//        mAdapter.bindViewHolder(viewHolders.get(i), i);
+//      }
+    }
   };
 
   @Override
@@ -554,7 +588,8 @@ public class FlowLayout extends ViewGroup {
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    if (mAdapter != null && !mAdapter.hasObservers())
+    if (mAdapter != null && !mAdapter.hasObservers()) {
       mAdapter.registerAdapterDataObserver(observer);
+    }
   }
 }
