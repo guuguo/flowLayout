@@ -484,8 +484,6 @@ public class FlowLayout extends ViewGroup {
       this.removeViewAt(i);
       viewHolders.remove(i);
     }
-    this.removeAllViews();
-    viewHolders.clear();
 
     for (int i = 0; i < mAdapter.getItemCount(); i++) {
       RecyclerView.ViewHolder holder;
