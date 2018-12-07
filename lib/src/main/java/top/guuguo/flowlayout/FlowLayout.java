@@ -492,10 +492,14 @@ public class FlowLayout extends ViewGroup {
         if (lHolderPair.second == mAdapter.getItemViewType(i)) {
           holder = viewHolders.get(i).first;
         } else {
+          this.removeViewAt(i);
           holder = createViewHolder(i);
+          this.addView(holder.itemView, i);
+
         }
       } else {
         holder = createViewHolder(i);
+        this.addView(holder.itemView);
       }
       mAdapter.bindViewHolder(holder, i);
     }
@@ -506,7 +510,6 @@ public class FlowLayout extends ViewGroup {
     ViewHolder holder;
     holder = mAdapter.createViewHolder(this, mAdapter.getItemViewType(i));
     viewHolders.add(Pair.create(holder, mAdapter.getItemViewType(i)));
-    this.addView(holder.itemView);
     return holder;
   }
 
@@ -588,7 +591,9 @@ public class FlowLayout extends ViewGroup {
     public void onItemRangeInserted(int positionStart, int itemCount) {
       super.onItemRangeInserted(positionStart, itemCount);
       for (int i = positionStart; i < positionStart + itemCount; i++) {
-        mAdapter.bindViewHolder(createViewHolder(i), i);
+        RecyclerView.ViewHolder holder = createViewHolder(i);
+        addView(holder.itemView, 0);
+        mAdapter.bindViewHolder(holder, i);
       }
       requestLayout();
 //      for (int i = positionStart; i < positionStart + itemCount; i++) {
