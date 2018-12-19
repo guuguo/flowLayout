@@ -257,7 +257,7 @@ public class FlowLayout extends ViewGroup {
               int stayMaxHeight = heightGridChildAv - lp.topMargin - lp.bottomMargin;
               int centerVerticalSpace = 0;
               if (stayMaxHeight > child.getMeasuredHeight()) {
-                centerVerticalSpace = (stayMaxHeight - child.getHeight()) / 2;
+                centerVerticalSpace = (stayMaxHeight - child.getMeasuredHeight()) / 2;
               }
               int childTop = lastLineHeight + lp.topMargin
                   + centerVerticalSpace; //(int) (getPaddingTop() + i * (heightGridChildAv + mDividerSpace) + lp.topMargin + centerVerticalSpace);
