@@ -11,9 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.AttributeSet;
 import android.util.Pair;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -316,7 +320,13 @@ public class FlowLayout extends ViewGroup {
       View child = getChildAt(i);
       if (child.getVisibility() != GONE) {
         measureChild(child, widthMeasureSpec, heightMeasureSpec);
-        MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+
+        LayoutParams lp;
+        try {
+          lp = (LayoutParams) child.getLayoutParams();
+        } catch (Exception e) {
+          lp = new LayoutParams(child.getLayoutParams());
+        }
         int childWidth = child.getMeasuredWidth();
         int childHeight = child.getMeasuredHeight();
         int childPlaceHeight = childHeight + lp.topMargin + lp.bottomMargin;
@@ -541,17 +551,12 @@ public class FlowLayout extends ViewGroup {
 
   @Override
   public LayoutParams generateLayoutParams(AttributeSet attrs) {
-    return new MarginLayoutParams(getContext(), attrs);
-  }
-
-  @Override
-  protected LayoutParams generateLayoutParams(LayoutParams p) {
-    return new MarginLayoutParams(p);
+    return new LayoutParams(getContext(), attrs);
   }
 
   @Override
   protected LayoutParams generateDefaultLayoutParams() {
-    return new MarginLayoutParams(super.generateDefaultLayoutParams());
+    return new LayoutParams(super.generateDefaultLayoutParams());
   }
 
   @NonNull
@@ -611,6 +616,54 @@ public class FlowLayout extends ViewGroup {
     super.onAttachedToWindow();
     if (mAdapter != null && !mAdapter.hasObservers()) {
       mAdapter.registerAdapterDataObserver(observer);
+    }
+  }
+
+  /**
+   * Per-child layout information associated with ViewLinearLayout.
+   *
+   * @attr ref android.R.styleable#LinearLayout_Layout_layout_weight
+   * @attr ref android.R.styleable#LinearLayout_Layout_layout_gravity
+   */
+  public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+
+    /**
+     * Indicates how much of the extra space in the LinearLayout will be allocated to the view
+     * associated with these LayoutParams. Specify 0 if the view should not be stretched. Otherwise
+     * the extra pixels will be pro-rated among all views whose weight is greater than 0.
+     */
+
+    public LayoutParams(Context c, AttributeSet attrs) {
+      super(c, attrs);
+    }
+
+    public LayoutParams(int width, int height) {
+      super(width, height);
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    public LayoutParams(ViewGroup.LayoutParams p) {
+      super(p);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public LayoutParams(ViewGroup.MarginLayoutParams source) {
+      super(source);
+    }
+
+    /**
+     * Copy constructor. Clones the width, height, margin values, weight, and gravity of the
+     * source.
+     *
+     * @param source The layout params to copy from.
+     */
+    public LayoutParams(LinearLayout.LayoutParams source) {
+      super(source);
     }
   }
 }
