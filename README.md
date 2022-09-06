@@ -5,7 +5,7 @@ flowlayout
 Android 流式布局和网格布局共同体，支持单选、多选等，支持使用直接使用recycler的adapter避免重复写适配器
 # 使用
 ```groovy
-compile 'com.github.guuguo:flowlayout:$version' // jitpack version 
+compile 'com.github.guuguo:flowLayout:$version' // jitpack version 
 ```
 # 效果图
 
